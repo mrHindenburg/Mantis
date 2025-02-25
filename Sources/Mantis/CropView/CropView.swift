@@ -291,7 +291,7 @@ final class CropView: UIView {
         viewModel.setBetweenOperationStatus()
         
         adaptRotationControlViewToCropBoxIfNeeded()
-        //rotationControlView.bringSelfToFront()
+        rotationControlView.bringSelfToFront()
     }
     
     private func adaptRotationControlViewToCropBoxIfNeeded() {
@@ -410,7 +410,7 @@ extension CropView {
         
         viewModel.resetCropFrame(by: getInitialCropBoxRect())
         cropWorkbenchView.resetImageContent(by: viewModel.cropBoxFrame)
-        //cropAuxiliaryIndicatorView.bringSelfToFront()
+        cropAuxiliaryIndicatorView.bringSelfToFront()
         
         setupRotationDialIfNeeded()
         

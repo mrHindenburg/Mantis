@@ -23,12 +23,25 @@ final class CropMaskViewManager {
         self.cropBoxFrame = cropBoxFrame
         maskViews = [dimmingView]
     }
+    
+    private func updateDimmingMask() {
+        guard let superview = dimmingView.superview else { return }
+
+        if dimmingView.frame != cropBoxFrame {
+            dimmingView.frame = cropBoxFrame
+        }
+        let path = UIBezierPath(rect: CGRect(origin: .zero, size: cropBoxFrame.size))
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = path.cgPath
+        maskLayer.fillRule = .nonZero
+
+            self.dimmingView.layer.mask = maskLayer
+    }
         
     private func showDimmingBackground() {
         dimmingView.alpha = 1
         visualEffectView.alpha = 0
-        print(cropBoxFrame)
-        //dimmingView.frame = cropBoxFrame
+        updateDimmingMask()
     }
 
     private func showVisualEffectBackground() {
@@ -76,8 +89,15 @@ extension CropMaskViewManager: CropMaskViewManagerProtocol {
 //        }
     }
     
+//    func adaptMaskTo(match cropRect: CGRect, cropRatio: CGFloat) {
+//       maskViews.forEach { $0.adaptMaskTo(match: cropRect, cropRatio: cropRatio) }
+//            //self.cropBoxFrame = cropRect
+//    }
+    
     func adaptMaskTo(match cropRect: CGRect, cropRatio: CGFloat) {
         self.cropBoxFrame = cropRect
-       maskViews.forEach { $0.adaptMaskTo(match: cropRect, cropRatio: cropRatio) }
+        dimmingView.frame = cropBoxFrame
+        updateDimmingMask()
     }
+
 }
