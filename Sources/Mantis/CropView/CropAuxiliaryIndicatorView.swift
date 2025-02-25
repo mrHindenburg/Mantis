@@ -13,9 +13,9 @@ final class CropAuxiliaryIndicatorView: UIView, CropAuxiliaryIndicatorViewProtoc
     private var borderHintColor = UIColor.black
     private var cornerHandleColor = UIColor.black
     private var edgeLineHandleColor = UIColor.black
-    private let cornerHandleLength = CGFloat(70.0)
+    private let cornerHandleLength = CGFloat(100.0)
     private let edgeLineHandleLength = CGFloat(30.0)
-    private let handleThickness = CGFloat(3.0)
+    private let handleThickness = CGFloat(5.0)
     private let borderThickness = CGFloat(1.0)
     private let hintLineThickness = CGFloat(50.0)
 
