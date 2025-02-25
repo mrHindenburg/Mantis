@@ -13,4 +13,5 @@ protocol CropMaskViewManagerProtocol {
     func showDimmingBackground(animated: Bool)
     func showVisualEffectBackground(animated: Bool)
     func adaptMaskTo(match cropRect: CGRect, cropRatio: CGFloat)
+    
 }

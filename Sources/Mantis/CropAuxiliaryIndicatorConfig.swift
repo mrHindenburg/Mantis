@@ -27,15 +27,15 @@ public struct CropAuxiliaryIndicatorConfig {
      */
     public var borderHintColor = UIColor.white
     
-    public var cornerHandleColor = UIColor.white
-    public var edgeLineHandleColor = UIColor.white
+    public var cornerHandleColor = UIColor.black
+    public var edgeLineHandleColor = UIColor.red
     
-    public var gridMainColor = UIColor.white
+    public var gridMainColor = UIColor.gray
     
     /**
         This property is only used when rotating the image
      */
-    public var gridSecondaryColor = UIColor.lightGray
+    public var gridSecondaryColor = UIColor.red
     
     public init() {}
 }

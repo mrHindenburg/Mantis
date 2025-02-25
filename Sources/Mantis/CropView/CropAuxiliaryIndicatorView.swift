@@ -9,26 +9,26 @@
 import UIKit
 
 final class CropAuxiliaryIndicatorView: UIView, CropAuxiliaryIndicatorViewProtocol {
-    private var borderNormalColor = UIColor.white
-    private var borderHintColor = UIColor.white
-    private var cornerHandleColor = UIColor.white
-    private var edgeLineHandleColor = UIColor.white
-    private let cornerHandleLength = CGFloat(20.0)
+    private var borderNormalColor = UIColor.black
+    private var borderHintColor = UIColor.black
+    private var cornerHandleColor = UIColor.black
+    private var edgeLineHandleColor = UIColor.black
+    private let cornerHandleLength = CGFloat(70.0)
     private let edgeLineHandleLength = CGFloat(30.0)
     private let handleThickness = CGFloat(3.0)
     private let borderThickness = CGFloat(1.0)
-    private let hintLineThickness = CGFloat(2.0)
+    private let hintLineThickness = CGFloat(50.0)
 
     private var hintLine = UIView()
     private var tappedEdge: CropViewAuxiliaryIndicatorHandleType = .none
-    private var gridMainColor = UIColor.white
-    private var gridSecondaryColor = UIColor.lightGray
+    private var gridMainColor = UIColor.gray
+    private var gridSecondaryColor = UIColor.gray
     private var disableCropBoxDeformation = false
     private var style: CropAuxiliaryIndicatorStyleType = .normal
     
     var cropBoxHotAreaUnit: CGFloat = 42
     
-    var gridHidden = true {
+    var gridHidden = false {
         didSet {
             setNeedsDisplay()
         }
@@ -149,7 +149,7 @@ final class CropAuxiliaryIndicatorView: UIView, CropAuxiliaryIndicatorViewProtoc
                 }
                 
                 let indicatorLinePath = UIBezierPath()
-                indicatorLinePath.lineWidth = 1
+                indicatorLinePath.lineWidth = 5
                 
                 let horizontalY = CGFloat(index + 1) * frame.height / CGFloat(indicatorLineNumber + 1)
                 indicatorLinePath.move(to: CGPoint(x: 0, y: horizontalY))
@@ -169,14 +169,14 @@ final class CropAuxiliaryIndicatorView: UIView, CropAuxiliaryIndicatorViewProtoc
             return
         }
         
-        layoutOuterLines()
+      //  layoutOuterLines()
         
         guard !disableCropBoxDeformation else {
             return
         }
         
         layoutCornerHandles()
-        layoutEdgeLineHandles()
+       // layoutEdgeLineHandles()
         layoutAccessibilityHelperViews()
     }
         
@@ -265,8 +265,6 @@ final class CropAuxiliaryIndicatorView: UIView, CropAuxiliaryIndicatorViewProtoc
         }
         
         self.tappedEdge = tappedEdge
-        
-        gridHidden = false
         gridLineNumberType = .crop
         
         func handleHintLine() {
@@ -308,8 +306,8 @@ final class CropAuxiliaryIndicatorView: UIView, CropAuxiliaryIndicatorViewProtoc
     }
     
     func handleEdgeUntouched() {
-        gridHidden = true
-        hintLine.removeFromSuperview()
+        gridHidden = false
+      //  hintLine.removeFromSuperview()
         tappedEdge = .none
     }
 }

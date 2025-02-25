@@ -141,8 +141,8 @@ final class CropView: UIView {
     }
     
     private func initialRender() {
-        setupCropWorkbenchView()
-        setupCropAuxiliaryIndicatorView()
+        setupCropWorkbenchView() // image and dimm
+        setupCropAuxiliaryIndicatorView() // crop frame
         checkImageStatusChanged()
     }
     
@@ -152,6 +152,7 @@ final class CropView: UIView {
         switch viewStatus {
         case .initial:
             initialRender()
+            cropMaskViewManager.showDimmingBackground(animated: true)
         case .rotating:
             rotateCropWorkbenchView()
         case .degree90Rotating:
@@ -174,7 +175,8 @@ final class CropView: UIView {
             cropAuxiliaryIndicatorView.handleEdgeUntouched()
             toggleRotationControlViewIsNeeded(isHidden: false)
             adaptRotationControlViewToCropBoxIfNeeded()
-            cropMaskViewManager.showVisualEffectBackground(animated: true)
+            cropMaskViewManager.showDimmingBackground(animated: true)
+           // cropMaskViewManager.showVisualEffectBackground(animated: true)
             checkImageStatusChanged()
         }
     }
@@ -226,7 +228,8 @@ final class CropView: UIView {
         }
         
         cropWorkbenchView.delegate = self
-        addSubview(cropWorkbenchView)
+            
+        addSubview(cropWorkbenchView) // зображення та сірий фон
         
         if cropViewConfig.minimumZoomScale > 1 {
             cropWorkbenchView.zoomScale = cropViewConfig.minimumZoomScale
@@ -235,8 +238,8 @@ final class CropView: UIView {
     
     private func setupCropAuxiliaryIndicatorView() {
         cropAuxiliaryIndicatorView.isUserInteractionEnabled = false
-        cropAuxiliaryIndicatorView.gridHidden = true
-        addSubview(cropAuxiliaryIndicatorView)
+        cropAuxiliaryIndicatorView.gridHidden = false
+        addSubview(cropAuxiliaryIndicatorView) // рамка 
     }
     
     /** This function is for correct flips. If rotating angle is exact ±45 degrees,
@@ -288,7 +291,7 @@ final class CropView: UIView {
         viewModel.setBetweenOperationStatus()
         
         adaptRotationControlViewToCropBoxIfNeeded()
-        rotationControlView.bringSelfToFront()
+        //rotationControlView.bringSelfToFront()
     }
     
     private func adaptRotationControlViewToCropBoxIfNeeded() {
@@ -407,7 +410,7 @@ extension CropView {
         
         viewModel.resetCropFrame(by: getInitialCropBoxRect())
         cropWorkbenchView.resetImageContent(by: viewModel.cropBoxFrame)
-        cropAuxiliaryIndicatorView.bringSelfToFront()
+        //cropAuxiliaryIndicatorView.bringSelfToFront()
         
         setupRotationDialIfNeeded()
         

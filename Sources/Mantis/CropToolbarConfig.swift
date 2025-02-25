@@ -26,7 +26,14 @@ public struct CropToolbarConfig {
      */
     public var backgroundColor: UIColor = .black
     public var foregroundColor: UIColor = .white
+    
+    
+    
+    public var customCropIcon: UIImage?
+    public var customCancelIcon: UIImage?
 
+    
+    
     public var toolbarButtonOptions: ToolbarButtonOptions = .default
     
     // The properties below are required by CropViewController and for some specific scenarios
@@ -65,5 +72,8 @@ public struct CropToolbarConfig {
      */
     public var mode: CropToolbarMode = .normal
     
-    public init() {}
+    
+    public init() {
+        
+    }
 }

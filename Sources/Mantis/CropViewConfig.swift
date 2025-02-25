@@ -51,11 +51,11 @@ public struct CropViewConfig {
      */
     public var backgroundColor: UIColor? {
         didSet {
-            cropMaskVisualEffectType = .custom(color: backgroundColor!)
+            cropMaskVisualEffectType = .light//.custom(color: .red)
         }
     }
     
-    public var cropMaskVisualEffectType: CropMaskVisualEffectType = .blurDark
+    public var cropMaskVisualEffectType: CropMaskVisualEffectType = .light //.custom(color: .red)
     
     public var presetTransformationType: PresetTransformationType = .none
     

@@ -12,22 +12,28 @@ final class CropMaskViewManager {
     private let dimmingView: CropMaskProtocol
     private let visualEffectView: CropMaskProtocol
     private(set) var maskViews: [CropMaskProtocol]
+    private var cropBoxFrame: CGRect
+
+    
     
     init(dimmingView: CropMaskProtocol,
-         visualEffectView: CropMaskProtocol) {
+         visualEffectView: CropMaskProtocol, cropBoxFrame: CGRect) {
         self.dimmingView = dimmingView
         self.visualEffectView = visualEffectView
-        maskViews = [dimmingView, visualEffectView]
+        self.cropBoxFrame = cropBoxFrame
+        maskViews = [dimmingView]
     }
         
     private func showDimmingBackground() {
         dimmingView.alpha = 1
         visualEffectView.alpha = 0
+        print(cropBoxFrame)
+        //dimmingView.frame = cropBoxFrame
     }
 
     private func showVisualEffectBackground() {
         self.dimmingView.alpha = 0
-        self.visualEffectView.alpha = 1
+        self.visualEffectView.alpha = 0
     }
 }
 
@@ -47,26 +53,31 @@ extension CropMaskViewManager: CropMaskViewManagerProtocol {
     }
     
     func showDimmingBackground(animated: Bool) {
-        if animated {
-            UIView.animate(withDuration: 0.1) {
-                self.showDimmingBackground()
-            }
-        } else {
-            showDimmingBackground()
-        }
+        
+        showDimmingBackground()
     }
+//        if animated {
+//            UIView.animate(withDuration: 0.1) {
+//                showDimmingBackground()
+//               
+//            }
+//        } else {
+//            showDimmingBackground()
+//        }
+//    }
     
     func showVisualEffectBackground(animated: Bool) {
-        if animated {
-            UIView.animate(withDuration: 0.5) {
-                self.showVisualEffectBackground()
-            }
-        } else {
-            showVisualEffectBackground()
-        }
+//        if animated {
+//            UIView.animate(withDuration: 0.5) {
+//                self.showVisualEffectBackground()
+//            }
+//        } else {
+//            showVisualEffectBackground()
+//        }
     }
     
     func adaptMaskTo(match cropRect: CGRect, cropRatio: CGFloat) {
-        maskViews.forEach { $0.adaptMaskTo(match: cropRect, cropRatio: cropRatio) }
+        self.cropBoxFrame = cropRect
+       maskViews.forEach { $0.adaptMaskTo(match: cropRect, cropRatio: cropRatio) }
     }
 }

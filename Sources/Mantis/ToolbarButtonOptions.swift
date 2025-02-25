@@ -22,9 +22,9 @@ public struct ToolbarButtonOptions: OptionSet {
     static public let verticallyFlip = ToolbarButtonOptions(rawValue: 1 << 6)
     static public let autoAdjust = ToolbarButtonOptions(rawValue: 1 << 7)
     
-    static public let `default`: ToolbarButtonOptions = [counterclockwiseRotate,
+    static public let `default`: ToolbarButtonOptions = [
                                                          reset,
-                                                         ratio]
+                                                         ]
     
     static public let all: ToolbarButtonOptions = [counterclockwiseRotate,
                                                    clockwiseRotate,

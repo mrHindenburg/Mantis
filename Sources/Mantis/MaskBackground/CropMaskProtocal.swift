@@ -41,6 +41,7 @@ extension CropMaskProtocol {
     
     func adaptMaskTo(match cropRect: CGRect, cropRatio: CGFloat) {
         var scaleX: CGFloat
+        print("cropRect \(cropRect)")
         
         switch cropShapeType {
         case .roundedRect:
