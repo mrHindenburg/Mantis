@@ -17,7 +17,7 @@ final class CropAuxiliaryIndicatorView: UIView, CropAuxiliaryIndicatorViewProtoc
     private let edgeLineHandleLength = CGFloat(30.0)
     private let handleThickness = CGFloat(5.0)
     private let borderThickness = CGFloat(1.0)
-    private let hintLineThickness = CGFloat(50.0)
+    private let hintLineThickness = CGFloat(1.0)
 
     private var hintLine = UIView()
     private var tappedEdge: CropViewAuxiliaryIndicatorHandleType = .none
@@ -149,7 +149,7 @@ final class CropAuxiliaryIndicatorView: UIView, CropAuxiliaryIndicatorViewProtoc
                 }
                 
                 let indicatorLinePath = UIBezierPath()
-                indicatorLinePath.lineWidth = 5
+                indicatorLinePath.lineWidth = 1
                 
                 let horizontalY = CGFloat(index + 1) * frame.height / CGFloat(indicatorLineNumber + 1)
                 indicatorLinePath.move(to: CGPoint(x: 0, y: horizontalY))

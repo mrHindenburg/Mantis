@@ -17,7 +17,7 @@ enum GridLineNumberType {
         case .none:
             return 0
         case .crop:
-            return 2
+            return 3
         case .rotate:
             return 8
         }
